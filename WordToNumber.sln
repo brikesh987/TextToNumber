@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32413.511
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordToNumber", "WordToNumber\WordToNumber.csproj", "{EBA75095-135F-4A7D-B5EA-FCAA69693232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordToNumberTests", "WordToNumberTests\WordToNumberTests.csproj", "{3D9435A0-6773-4E9F-9A1A-1662A6417642}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBA75095-135F-4A7D-B5EA-FCAA69693232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA75095-135F-4A7D-B5EA-FCAA69693232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA75095-135F-4A7D-B5EA-FCAA69693232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA75095-135F-4A7D-B5EA-FCAA69693232}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D9435A0-6773-4E9F-9A1A-1662A6417642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D9435A0-6773-4E9F-9A1A-1662A6417642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D9435A0-6773-4E9F-9A1A-1662A6417642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D9435A0-6773-4E9F-9A1A-1662A6417642}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FBFA70A-964A-4F4B-8766-230946B02700}
+	EndGlobalSection
+EndGlobal
