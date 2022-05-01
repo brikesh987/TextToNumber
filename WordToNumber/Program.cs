@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace WordToNumber
 {
@@ -90,7 +90,8 @@ namespace WordToNumber
                         break;
                 }
 
-                Console.WriteLine($"Result of the math operation is {result}");
+                var resultInWord = converter.ConvertTo(result);
+                Console.WriteLine($"Result of the math operation is : {resultInWord}");
             }
         }
 
