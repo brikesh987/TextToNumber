@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="StringToNumberConverter.cs" company="Xyz">
 // All rights reserved
 // </copyright>
@@ -12,6 +12,7 @@ namespace WordToNumber
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net.Http.Headers;
 
     /// <summary>
     /// The string to number converter.
@@ -89,8 +90,65 @@ namespace WordToNumber
         /// The <see cref="string"/>.
         /// </returns>
         public string ConvertTo(long number)
-        {
-            // TODO
+        {            
+            string[] onesAndTeens = new[]
+                                        {
+                                            "zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+                                            "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+                                            "sixteen", "seventeen", "eighteen", "nineteen"
+                                        };
+            string[] tens = { string.Empty, string.Empty, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
+
+            var current = number;
+            if (number == 0)
+            {
+                return string.Empty;
+            }
+
+            if (number < 20)
+            {
+                return onesAndTeens[number];
+            }
+
+            if (number < 100)
+            {
+                return tens[number / 10] + " " + onesAndTeens[number % 10];
+            }
+
+            if (number < 1000)
+            {
+                return onesAndTeens[number / 100] + " hundred " + this.ConvertTo(number % 100);
+            }
+
+            if (number < 10000)
+            {
+                return onesAndTeens[number / 1000] + " thousand " + this.ConvertTo(number % 1000);
+            }
+
+            // Less than 100K
+            if (number < 100000)
+            {
+                return tens[number / 10000] + " " + this.ConvertTo(number % 10000);
+            }
+
+            // Less than million
+            if (number < 1000000)
+            {
+                return this.ConvertTo(number / 1000) + " thousand " + this.ConvertTo(number % 1000);
+            }
+
+            // less than 10 mil
+            if (number < 10000000)
+            {
+                return this.ConvertTo(number / 1000000) + " million " + this.ConvertTo(number % 1000000);
+            }
+
+            // less than 100 mil
+            if (number < 100000000)
+            {
+                return this.ConvertTo(number / 1000000) + " million " + this.ConvertTo(number % 1000000);
+            }
+
             return string.Empty;
         }
 
@@ -146,48 +204,6 @@ namespace WordToNumber
             total = (this.FindScaleIndexAndConvert(firstHalf) * highestPriorityScale.scaleValue)
                     + this.FindScaleIndexAndConvert(secondHalf);
             return total;
-            /*
-            for (int i = -1; i < markersAndScale.Count; i++)
-            {
-                List<string> subWords;
-                //if ((i < markersAndScale.Count - 1) && (markersAndScale[i + 1].marker - markersAndScale[i].marker == 1))
-                //{
-                //    // This is special case where the marker are continuous for example "Three hundred thousand"
-                //    // In this case the scale value for both the marker are multiplied
-                //    total += this.Convert(subWords.ToArray()) * markersAndScale[i + 1].scaleValue * markersAndScale[i].scaleValue;
-                //}
-                if (i == -1)
-                {
-                    subWords = wordList.GetRange(0, markersAndScale[0].marker);
-                    if (markersAndScale.Count >= 2 && (markersAndScale[1].marker - markersAndScale[0].marker == 1))
-                    {
-                        // This is special case where the marker are continuous for example "Three hundred thousand"
-                        // In this case the scale value for both the marker are multiplied
-                        total += this.Convert(subWords.ToArray()) * markersAndScale[1].scaleValue * markersAndScale[0].scaleValue;
-                    }
-                    else
-                    {
-                        total += this.Convert(subWords.ToArray()) * markersAndScale[0].scaleValue;
-                    }
-                }
-                else if (i == markersAndScale.Count - 1)
-                {
-                    subWords = wordList.GetRange(markersAndScale[i].marker + 1, wordList.Count - (markersAndScale[i].marker + 1));
-                    total += this.Convert(subWords.ToArray());
-                }
-                else
-                {
-                    subWords = wordList.GetRange(
-                        markersAndScale[i].marker + 1,
-                        markersAndScale[i + 1].marker - (markersAndScale[i].marker + 1));
-                    total += this.Convert(subWords.ToArray()) * markersAndScale[i + 1].scaleValue;
-                }
-            }
-
-            return total;
-            */
-
-            // return this.Convert(words);
         }
 
         /// <summary> Converts the sub words to number which would be multiplied with the scale and added to produce final number. </summary>
