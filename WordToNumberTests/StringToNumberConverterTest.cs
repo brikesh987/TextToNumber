@@ -79,5 +79,20 @@ namespace WordToNumberTests
             Assert.IsTrue(sut.ConvertTo("two hundred sixty three million seven hundred fifty nine thousand twenty four") == 263759024, "Failed to convert 2,63,759,024 ");
 
         }
+        
+        /// <summary>
+        /// Convert string to number.
+        /// </summary>
+        [TestMethod]
+        public void TestConvertStringToNumber()
+        {
+            var sut = new StringToNumberConverter();
+            Assert.IsTrue(sut.ConvertTo(51) == "fifty one", "Failed to convert 51");
+            Assert.IsTrue(sut.ConvertTo(89) == "eighty nine", "Failed to convert 89");
+            Assert.IsTrue(sut.ConvertTo(53357) == "fifty three thousand three hundred fifty seven", "Failed to convert 53357");
+            Assert.IsTrue(sut.ConvertTo(710963) == "seven hundred ten thousand nine hundred sixty three", "Failed to convert 710963");
+
+            Assert.IsTrue(sut.ConvertTo(3512300).Trim() == "three million five hundred twelve thousand three hundred", "Failed to convert 3512300");
+        }
     }
 }
